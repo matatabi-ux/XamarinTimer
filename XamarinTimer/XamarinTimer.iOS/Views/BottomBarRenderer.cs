@@ -98,30 +98,30 @@ namespace XamarinTimer.iOS.Views
             this.SetNeedsDisplay();
         }
 
-/// <summary>
-/// Element プロパティ変更イベントハンドラ
-/// </summary>
-/// <param name="sender">イベント発行者</param>
-/// <param name="e">イベント引数</param>
-protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-{
-    base.OnElementPropertyChanged(sender, e);
+        /// <summary>
+        /// Element プロパティ変更イベントハンドラ
+        /// </summary>
+        /// <param name="sender">イベント発行者</param>
+        /// <param name="e">イベント引数</param>
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
 
-    switch (e.PropertyName)
-    {
-        case "IsEnableStop":
-            this.stopButton.Enabled = this.Element.IsEnableStop;
-            break;
+            switch (e.PropertyName)
+            {
+                case "IsEnableStop":
+                    this.stopButton.Enabled = this.Element.IsEnableStop;
+                    break;
 
-        case "IsEnablePause":
-            this.pauseButton.Enabled = this.Element.IsEnablePause;
-            break;
+                case "IsEnablePause":
+                    this.pauseButton.Enabled = this.Element.IsEnablePause;
+                    break;
 
-        case "IsEnableStart":
-            this.startButton.Enabled = this.Element.IsEnableStart;
-            break;
-    }
-}
+                case "IsEnableStart":
+                    this.startButton.Enabled = this.Element.IsEnableStart;
+                    break;
+            }
+        }
         
         /// <summary>
         /// 停止ボタン押下イベントハンドラ
