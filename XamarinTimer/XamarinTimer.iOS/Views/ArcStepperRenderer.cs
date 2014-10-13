@@ -45,15 +45,43 @@ namespace XamarinTimer.iOS.Views
         #endregion //Privates
 
         /// <summary>
+        /// Element 変更イベントハンドラ
+        /// </summary>
+        /// <param name="e">イベント引数</param>
+        protected override void OnElementChanged(ElementChangedEventArgs<ArcStepper> e)
+        {
+            base.OnElementChanged(e);
+
+            var page = this.Element.ParentView.ParentView as Page;
+            if (page == null)
+            {
+                return;
+            }
+            page.SizeChanged += this.OnSizeChanged;
+        }
+
+        /// <summary>
+        /// サイズ変更イベントハンドラ
+        /// </summary>
+        /// <param name="sender">イベント発行者</param>
+        /// <param name="e">イベント引数</param>
+        private void OnSizeChanged(object sender, EventArgs e)
+        {
+            // 再描画する
+            this.SetNeedsDisplay();
+        }
+
+        /// <summary>
         /// 描画する
         /// </summary>
         /// <param name="rect">描画範囲</param>
         public override void Draw(RectangleF rect)
         {
+            this.NativeView.ContentMode = UIViewContentMode.ScaleAspectFit;
+
             var centerX = rect.Width / 2f;
             var centerY = rect.Height / 2f;
             var radius = (Math.Min(rect.Width, rect.Height) / 2f) - 40f;
-            this.NativeView.ContentMode = UIViewContentMode.ScaleAspectFit;
 
             using (var gc = UIGraphics.GetCurrentContext())
             {
@@ -115,7 +143,7 @@ namespace XamarinTimer.iOS.Views
                     break;
             }
         }
-        
+
         /// <summary>
         /// ドラッグ移動イベントハンドラ
         /// </summary>
