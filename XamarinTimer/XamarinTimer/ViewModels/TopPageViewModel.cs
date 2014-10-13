@@ -6,8 +6,6 @@
 //-----------------------------------------------------------------------
 #endregion
 
-using Xamarin.Forms;
-
 namespace XamarinTimer.ViewModels
 {
     using System;
@@ -17,6 +15,7 @@ namespace XamarinTimer.ViewModels
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Xamarin.Forms;
 
     /// <summary>
     /// トップ画面の ViewModel
