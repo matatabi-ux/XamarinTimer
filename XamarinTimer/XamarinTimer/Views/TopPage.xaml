@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view="clr-namespace:XamarinTimer.Views;assembly=XamarinTimer"
+             xmlns:vm="clr-namespace:XamarinTimer.ViewModels;assembly=XamarinTimer"
+             x:Class="XamarinTimer.Views.TopPage">
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0"
+                Android="0, 0, 0, 0"
+                WinPhone="0, 0, 0, 0" />
+  </ContentPage.Padding>
+  
+  <ContentPage.BindingContext>
+    <vm:TopPageViewModel/>
+  </ContentPage.BindingContext>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    
+    <view:ArcStepper Grid.Column="1"
+                     Grid.Row="0"
+                     Value="{Binding TimerValue, Mode=TwoWay}"
+                     Maximum="{Binding MaxSeconds}"/>
+    <view:BottomBar Grid.Column="0" 
+                    Grid.ColumnSpan="3" 
+                    Grid.Row="1" 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    StartCommand="{Binding StartCommand}"
+                    PauseCommand="{Binding PauseCommand}"
+                    StopCommand="{Binding StopCommand}"
+                    IsEnableStart="{Binding IsEnableStart}"
+                    IsEnablePause="{Binding IsEnablePause}"
+                    IsEnableStop="{Binding IsEnableStop}"/>
+  </Grid>
+  
+</ContentPage>
