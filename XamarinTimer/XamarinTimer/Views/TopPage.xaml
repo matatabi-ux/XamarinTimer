@@ -29,6 +29,7 @@
     
     <view:ArcStepper Grid.Column="1"
                      Grid.Row="0"
+                     IsTimerStarted="{Binding IsTimerStarted}"
                      Value="{Binding TimerValue, Mode=TwoWay}"
                      Maximum="{Binding MaxSeconds}"/>
     <view:BottomBar Grid.Column="0" 
