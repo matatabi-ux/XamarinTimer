@@ -178,11 +178,6 @@ namespace XamarinTimer.WinPhone.Views
         /// <param name="e">イベント引数</param>
         private void OnManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-            if (this.Element.IsTimerStarted)
-            {
-                return;
-            }
-
             // 水平か垂直かどちらか一方だけに平行移動するようにする
             if (this.manipulationMode == ManipulationModes.TranslateX || Math.Abs(e.DeltaManipulation.Translation.X) > Math.Abs(e.DeltaManipulation.Translation.Y))
             {
@@ -224,19 +219,6 @@ namespace XamarinTimer.WinPhone.Views
         /// <param name="e">イベント引数</param>
         private void OnManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            if (this.Element.IsTimerStarted)
-            {
-                this.RenderTransform = new TranslateTransform()
-                {
-                    X = 0,
-                    Y = 0,
-                };
-                this.manipulationGap.X = 0;
-                this.manipulationGap.Y = 0;
-                this.manipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
-                return;
-            }
-
             // 移動距離がしきい値を越えていた場合、値を増減する
             if (Math.Abs(this.manipulationGap.Y) >= VerticalThreshold)
             {
